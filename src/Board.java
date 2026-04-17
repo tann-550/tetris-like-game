@@ -4,7 +4,7 @@ public class Board {
     public Block[][] grid;
 
     public Board() {
-        grid = new Block[row][];
+        grid = new Block[row][column];
 
         for(int i = 0; i < column; i++) {
             for(int j = 0; j < row; j++) {
