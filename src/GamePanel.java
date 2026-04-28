@@ -44,6 +44,15 @@ public class GamePanel extends JPanel implements Runnable {
                             tetromino.move(0, 1); {
                         break; 
                     }
+                    case KeyEvent.VK_UP:
+                    int[][] nextShape = tetromino.rotateShape();
+                    int[][] currentShape = tetromino.getShape();
+
+                    tetromino.setShape(nextShape);
+                    if(!board.valid(tetromino, x, y)) {
+                        tetromino.setShape(currentShape); 
+                    }
+                    break;
                 }
                 repaint();
             }
