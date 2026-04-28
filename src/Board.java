@@ -51,4 +51,38 @@ public class Board {
             }
         }
     }
+    //line clear up
+    public int clearLine() {
+        int clearLine = 0;
+
+        for(int y = row - 1; y >= 0; y--) {
+            boolean full = true;
+
+            for(int x = 0; x < column; x++) {
+                if(!grid[x][y].hasPiece()) {
+                    full = false;
+                    break;
+                }
+            }
+            if(full) {
+                clearLine++;
+            
+                for(int dropY = y; dropY > 0; dropY--) {
+                    for(int x = 0; x < column; x++) {
+                        if(grid[x][dropY-1].hasPiece()) {
+                            grid[x][dropY].have(grid[x][dropY-1].getColor());
+                        }
+                        else {
+                            grid[x][dropY].dontHave();
+                        }
+                    }
+                }
+                for(int x = 0; x < column; x++) {
+                    grid[x][0].dontHave();
+                }
+                y++;
+            }
+        }
+        return clearLine;
+    }
 }

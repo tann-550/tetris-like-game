@@ -12,6 +12,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Tetromino tetromino;
     private int fallCount = 0;
     private GridOutline playArea;
+    private int score = 0;
 
     public GamePanel(){
         this.setBackground(Color.BLACK);
@@ -66,7 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.tetromino = Tetromino.randomShape();
         this.playArea = new GridOutline();
 
-
     }
     @Override
     public void run() {
@@ -99,6 +99,12 @@ public class GamePanel extends JPanel implements Runnable {
                 else {
                     board.pieceLock(tetromino);
                     this.tetromino = Tetromino.randomShape();
+
+                    //score (havent shown yet, gonna deal with it tomorrow)
+                    int line = board.clearLine();
+                    if(line > 0) {
+                        score += (line*100);
+                    }
                 }
                 fallCount = 0;
             }
